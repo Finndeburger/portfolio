@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.69",
-    "@nuxt/image": "^1.11.0"
+    "@nuxt/image": "^1.11.0",
+    "vue-tsc": "^3.2.5"
   }
 }
