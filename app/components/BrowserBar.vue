@@ -9,7 +9,7 @@
 
     <!-- Back button -->
     <button
-      class="flex items-center text-[#5f6368] hover:text-black transition-colors"
+      class="flex items-center text-[#5f6368] hover:text-black transition-colors cursor-pointer"
       @click="goBack"
       aria-label="Go back"
     >

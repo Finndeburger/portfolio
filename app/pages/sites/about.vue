@@ -69,6 +69,29 @@ definePageMeta({ layout: 'browser' })
             <span class="border-r-2 border-[#c4455a] pr-3">Portfolio</span>
         </div>
     </section>
+
+    <!-- All projects -->
+    <section class="bg-[#ecf4f0] flex justify-center mx-auto text-black text-5xl items-center p-20">
+        <a href="https://github.com/Finndeburger" class="underline">
+            <h2 class="">View all projects</h2>
+        </a>
+    </section>
+
+    <!-- Contact footer -->
+    <section>
+        <div class="flex flex-row justify-between w-5/6 mx-auto p-20 items-center">
+            <div class="flex flex-col">
+                <span class="text-[#ff1744] mb-5 text-3xl">Contact</span>
+                <img class="h-10" src="/assets/FinnHarmensLogoBlack.jpeg" alt="Black logo">
+            </div>
+            <div class="flex flex-col">
+                <form class="flex flex-col text-gray-800">
+                    <span>E-Mail</span>
+                    <input type="text" class="flex items-center rounded-xl bg-[#d9d9d9] border-2 border-[#a6a6a6] text-lg rounded-xl focus:outline-none bg-transparent"></input>
+                </form>
+            </div>
+        </div>
+    </section>
 </template>
 
 <style scoped>
@@ -112,7 +135,6 @@ h1 {
 .name-image img {
     width: 350px;
     max-width: 80%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: rgba(255, 23, 68, 0.557) 15px 15px 5px 5px;
     opacity: 0;
     animation: fadeIn 2s ease 1s forwards;
