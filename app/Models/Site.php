@@ -6,9 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
-    protected function casts(): array {
+    protected $fillable = [
+        'title',
+        'slug',
+        'dummy_url',
+        'description',
+        'tags',
+        'sponsored',
+    ];
+
+    protected function casts(): array
+    {
         return [
-            'tags' => 'array', 
+            'tags' => 'array',
             'sponsored' => 'boolean',
         ];
     }
