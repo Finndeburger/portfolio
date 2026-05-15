@@ -1,5 +1,10 @@
 <?php
 
+// Force PHP to recognise this as an HTTPS request
+// (Vercel terminates TLS at the edge and proxies as HTTP internally)
+$_SERVER['HTTPS'] = 'on';
+$_SERVER['SERVER_PORT'] = '443';
+
 // Create required temp directories for serverless environment
 $dirs = [
     '/tmp/storage/framework/views',
