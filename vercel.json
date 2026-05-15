@@ -2,7 +2,7 @@
   "version": 2,
   "framework": null,
   "outputDirectory": "public",
-  "buildCommand": "npm run build && php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\" && php composer-setup.php --quiet && php composer.phar install --no-dev --optimize-autoloader",
+  "buildCommand": "npm run build",
   "installCommand": "npm install",
   "functions": {
     "api/index.php": {
