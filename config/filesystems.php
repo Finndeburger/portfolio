@@ -60,6 +60,19 @@ return [
             'report' => false,
         ],
 
+        'bunny' => [
+            'driver' => 's3',
+            'key' => env('BUNNY_STORAGE_ACCESS_KEY'),
+            'secret' => env('BUNNY_STORAGE_ACCESS_KEY'),
+            'region' => env('BUNNY_STORAGE_REGION', 'global'),
+            'bucket' => env('BUNNY_STORAGE_ZONE'),
+            'endpoint' => env('BUNNY_STORAGE_ENDPOINT'),
+            'url' => env('BUNNY_CDN_URL'),
+            'use_path_style_endpoint' => true,
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

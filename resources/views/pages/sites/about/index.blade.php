@@ -84,7 +84,7 @@
             <div class="flex flex-col">
                 <form class="flex flex-col text-gray-800">
                     <span>E-Mail</span>
-                    <input type="text" class="flex items-center rounded-xl bg-[#d9d9d9] border-2 border-[#a6a6a6] text-lg rounded-xl focus:outline-none bg-transparent">
+                    <input type="text" class="flex items-center rounded-xl bg-[#d9d9d9] border-2 border-[#a6a6a6] text-lg focus:outline-none">
                 </form>
             </div>
         </div>

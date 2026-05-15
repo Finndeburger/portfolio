@@ -19,6 +19,9 @@ class SiteSeeder extends Seeder
             'description' => 'About Finn Harmens',
             'tags' => ['portfolio', 'about', 'about me', 'finn', 'info'],
             'sponsored' => false,
+            'database_connection' => null,
+            'database_table' => null,
+            'database_meta' => null,
         ]);
 
         Site::create([
@@ -28,6 +31,33 @@ class SiteSeeder extends Seeder
             'description' => 'Test page for routing',
             'tags' => ['test', 'development', 'router', 'placeholder'],
             'sponsored' => false,
+            'database_connection' => null,
+            'database_table' => null,
+            'database_meta' => null,
+        ]);
+
+        Site::create([
+            'title' => 'BergCoffee',
+            'slug' => 'bergcoffee',
+            'dummy_url' => 'https://bergcoffee.com',
+            'description' => 'BergCoffee: real coffee, grounded and down-to-earth.',
+            'tags' => ['bergcoffee', 'coffee', 'drinks', 'store', 'shop', 'e-commerce', 'products'],
+            'sponsored' => false,
+            'database_connection' => null,
+            'database_table' => null,
+            'database_meta' => null,
+        ]);
+
+        Site::create([
+            'title' => 'Authentication',
+            'slug' => 'authentication',
+            'dummy_url' => 'https://example.com/authentication',
+            'description' => 'A description for search results',
+            'tags' => ['tag1', 'tag2', 'tag3'],
+            'sponsored' => false,
+            'database_connection' => null,
+            'database_table' => null,
+            'database_meta' => null,
         ]);
     }
 }

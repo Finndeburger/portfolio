@@ -6,7 +6,7 @@
 
     <p class="text-sm text-[#202124] truncate">{{ $site->dummy_url }}</p>
 
-    <a href="/sites/{{ $site->slug }}" class="text-xl text-[#1a0dab] hover:underline font-medium">
+    <a href="{{ route('sites.show', ['slug' => $site->slug]) }}" class="text-xl text-[#1a0dab] hover:underline font-medium">
 
         {{ $site->title }}
 

@@ -3,25 +3,54 @@
 @section('title', 'LookAtMe - Search')
 
 @section('content')
+
     <div class="flex flex-col min-h-screen overflow-hidden">
         {{-- Nav --}}
         <nav class="flex justify-end items-center gap-8 px-10 py-6">
-            <a href="#"
-                class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Gmail</a>
-            <a href="#"
-                class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Images</a>
-            <svg class="w-6 h-6 fill-current text-black cursor-pointer" viewBox="0 0 24 24">
+            @auth
+                @if (auth()->user()->isAdmin())
+                    <a href="{{ route('admin.users') }}"
+                        class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Admin</a>
+                @endif
+                <a href="{{ route('auth.passkey') }}"
+                    class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Account</a>
+                <form action="{{ route('auth.logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Logout</button>
+                </form>
+            @else
+                <a href="{{ route('auth.login') }}"
+                    class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Login</a>
+                <a href="{{ route('auth.register') }}"
+                    class="text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Register</a>
+            @endauth
+            <a title="Send me an email!" onclick="window.location.href='mailto:voorbeeld@gmail.com';"
+                class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-black transition-colors">Email</a>
+            <svg onclick="window.location.href='youtube.com';" class="w-6 h-6 fill-current text-black cursor-pointer" viewBox="0 0 24 24">
                 <path
                     d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
             </svg>
-            {{-- Profile icon --}}
-            <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <g fill="none" stroke="#a6a6a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="10" r="3" />
-                    <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
-                </g>
-            </svg>
+            {{-- Profile icon / picture --}}
+            @auth
+                <a href="{{ route('auth.passkey') }}">
+                    <img
+                        src="{{ asset(auth()->user()->profile_picture ?: 'assets/general/pfpnb.png') }}"
+                        alt="{{ auth()->user()->name }} profile picture"
+                        class="w-8 h-8 rounded-full object-cover border border-[#a6a6a6]"
+                    />
+                </a>
+            @else
+                <a href="{{ route('auth.register') }}">
+                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g fill="none" stroke="#a6a6a6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="10" r="3" />
+                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+                    </g>
+                    </svg>
+                </a>
+            @endauth
         </nav>
 
         {{-- Main --}}
@@ -43,8 +72,8 @@
 
 
             {{-- Search — Alpine.js powered search with suggestions --}}
-            <div x-data="searchApp()" class="relative w-[500px]">
-                <div class="flex items-center rounded-xl h-[60px] bg-[#d9d9d9] border-2 border-[#a6a6a6]"
+            <div x-data="searchApp()" class="relative w-125">
+                <div class="flex items-center rounded-xl h-15 bg-[#d9d9d9] border-2 border-[#a6a6a6]"
                     :class="{ 'rounded-b-none': suggestions.length > 0 }">
                     <svg class="absolute left-4" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                         viewBox="0 0 24 24">

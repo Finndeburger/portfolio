@@ -24,12 +24,25 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = fake()->randomElement(['male', 'female', 'non_binary', 'other', 'prefer_not_to_say']);
+
+        $profilePicture = match ($gender) {
+            'male' => 'assets/general/pfpmale.png',
+            'female' => 'assets/general/pfpfemale.png',
+            default => 'assets/general/pfpnb.png',
+        };
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'gender' => $gender,
+            'profile_picture' => $profilePicture,
+            'role' => 'user',
+            'passkey_credentials' => null,
+            'passkey_enabled_at' => null,
         ];
     }
 

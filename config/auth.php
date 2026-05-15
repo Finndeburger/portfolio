@@ -114,4 +114,16 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Bootstrap
+    |--------------------------------------------------------------------------
+    |
+    | This email is used by the admin bootstrap command/seeder to ensure your
+    | admin account exists and has the admin role.
+    |
+    */
+
+    'admin_bootstrap_email' => env('ADMIN_BOOTSTRAP_EMAIL', 'finnharmens@gmail.com'),
+
 ];

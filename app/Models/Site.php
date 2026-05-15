@@ -13,6 +13,9 @@ class Site extends Model
         'description',
         'tags',
         'sponsored',
+        'database_connection',
+        'database_table',
+        'database_meta',
     ];
 
     protected function casts(): array
@@ -20,6 +23,7 @@ class Site extends Model
         return [
             'tags' => 'array',
             'sponsored' => 'boolean',
+            'database_meta' => 'array',
         ];
     }
 }

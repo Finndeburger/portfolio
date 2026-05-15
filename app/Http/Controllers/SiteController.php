@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coffee;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\View;
 use Throwable;
 
 class SiteController extends Controller
@@ -65,16 +67,45 @@ class SiteController extends Controller
         ]);
     }
 
-    // Dynamic page for slugs
-    public function show(string $slug)
+    // Dynamic page for mini sites and subpages.
+    // /sites/{slug}           => pages.sites.{slug}.index
+    // /sites/{slug}/{page...} => pages.sites.{slug}.{page}
+    public function show(string $slug, ?string $page = null)
     {
         $site = $this->getSites()->firstWhere('slug', $slug);
 
         abort_if(! $site, 404);
 
-        return view('pages.sites.show', [
-            'site' => (object) $site,
-        ]);
+        $page = trim((string) $page, '/');
+        $page = $page === '' ? 'index' : $page;
+
+        // Keep view resolution safe and predictable.
+        abort_unless((bool) preg_match('/^[a-z0-9\-\/]+$/i', $page), 404);
+
+        $view = sprintf('pages.sites.%s.%s', $slug, str_replace('/', '.', $page));
+
+        if (View::exists($view)) {
+            $data = [
+                'site' => (object) $site,
+                'currentPage' => $page,
+            ];
+
+            if ($slug === 'bergcoffee') {
+                $data['coffees'] = Coffee::all();
+            }
+
+            return view($view, $data);
+        }
+
+        // For mini sites without a custom folder/index, use the generic template.
+        if ($page === 'index') {
+            return view('pages.sites.show', [
+                'site' => (object) $site,
+                'currentPage' => $page,
+            ]);
+        }
+
+        abort(404);
     }
 
     // API endpoint
@@ -104,6 +135,9 @@ class SiteController extends Controller
             'description' => (string) ($site['description'] ?? ''),
             'tags' => collect($site['tags'] ?? [])->map(fn(mixed $tag) => (string) $tag)->values()->all(),
             'sponsored' => (bool) ($site['sponsored'] ?? false),
+            'database_connection' => $site['database_connection'] ?? null,
+            'database_table' => $site['database_table'] ?? null,
+            'database_meta' => $site['database_meta'] ?? null,
         ];
     }
 }

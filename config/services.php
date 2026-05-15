@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'bunny' => [
+        'cdn_url' => env('BUNNY_CDN_URL'),
+        'pull_zone' => env('BUNNY_PULL_ZONE'),
+        'storage_zone' => env('BUNNY_STORAGE_ZONE'),
+        'storage_endpoint' => env('BUNNY_STORAGE_ENDPOINT'),
+        'storage_access_key' => env('BUNNY_STORAGE_ACCESS_KEY'),
+    ],
+
 ];
