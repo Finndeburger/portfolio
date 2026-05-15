@@ -20,12 +20,23 @@ foreach ($dirs as $dir) {
     }
 }
 
+ob_start();
 try {
     require __DIR__ . '/../public/index.php';
 } catch (\Throwable $e) {
+    ob_end_clean();
     http_response_code(500);
-    echo '<pre>' . $e->getMessage() . "\n" . $e->getTraceAsString() . '</pre>';
+    echo '<pre>EXCEPTION: ' . htmlspecialchars($e->getMessage()) . "\n\n" . htmlspecialchars($e->getTraceAsString()) . '</pre>';
+    exit;
 }
+$output = ob_get_clean();
+
+if (empty(trim($output))) {
+    echo '<pre>DEBUG: Laravel ran but produced EMPTY output. No exception thrown.</pre>';
+} else {
+    echo $output;
+}
+
     '/tmp/storage/framework/views',
     '/tmp/storage/framework/cache/data',
     '/tmp/storage/framework/sessions',
