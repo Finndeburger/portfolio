@@ -1,7 +1,5 @@
 <?php
 
-define('LARAVEL_START', microtime(true));
-
 // Create required temp directories for serverless environment
 $dirs = [
     '/tmp/storage/framework/views',
