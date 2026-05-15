@@ -2,7 +2,7 @@
   "version": 2,
   "framework": null,
   "outputDirectory": "public",
-  "buildCommand": "npx vite build",
+  "buildCommand": "npm run build && php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\" && php composer-setup.php --quiet && php composer.phar install --no-dev --optimize-autoloader",
   "installCommand": "npm install",
   "functions": {
     "api/index.php": {
@@ -26,6 +26,8 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
+    "APP_URL": "https://finnharmens.vercel.app",
+    "ASSET_URL": "https://finnharmens.vercel.app",
     "LOG_CHANNEL": "stderr",
     "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
     "CACHE_DRIVER": "array",
